@@ -1,84 +1,101 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+<style>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+input, button {
+  display: inline !important;
+}
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+h3, p {
+  display: inline !important;
+}
 
-            .full-height {
-                height: 100vh;
-            }
+.customer {
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  margin: 4px 0 4px 0;
+  padding: 4px;
+}
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+.type {
+  display: inline;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  margin: 5px 0 5px 0;
+  padding: 4px;
+}
 
-            .position-ref {
-                position: relative;
-            }
+input {
+  margin-bottom: 5px !important;
+}
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+</style>
 
-            .content {
-                text-align: center;
-            }
+@section('content')
 
-            .title {
-                font-size: 84px;
-            }
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">Barbershop Queue</div>
 
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
+        <div class="panel-body">
 
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login as Barber</a>
-                        <a href="{{ route('register') }}">Register as Barber</a>
-                    @endauth
+          @if (isset($customers) && $customers->count() > 0)
+              @foreach ($customers as $customer )
+                  <div class="customer">
+                      <h3>{{ $customer->name }}</h3>
+                      <p>({{ $customer->type }})</p>
+                      @if ($customer->status == "in progress")
+                        <p>In Progress</p>
+                      @endif
+                  </div>
+              @endforeach
+          @else
+              <p>There are currently no customers in line</p>
+          @endif
+
+          @guest
+          <form class="form-horizontal" method="POST" action="/">
+            {{ csrf_field() }}
+
+            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
+
+              <div class="col-md-12">
+                <input id="name" type="text" class="form-control" name="name" placeholder="Enter Name" required autofocus>
+                <div class="type">
+                  <label for="haircut">Haircut</label>
+                  <input id="haircut" type="radio" value="haircut" name="type" checked="checked">
                 </div>
-                @include ( 'layouts.barber' )
-            @else
-                @include ( 'layouts.customer' )
-            @endif
+                <div class="type">
+                  <label for="haircut">Shave</label>
+                  <input id="shave" type="radio" value="shave" name="type">
+                </div>
+                <div class="type">
+                  <label for="haircut">Both</label>
+                  <input id="both" type="radio" value="both" name="type">
+                </div>
+                @if ($errors->has('name'))
+                <span class="help-block">
+                  <strong>{{ $errors->first('name') }}</strong>
+                </span>
+                @endif
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-primary">
+                  Get in Line
+                </button>
+              </div>
+            </div>
+          </form>
+          @endguest
         </div>
-    </body>
-</html>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection
