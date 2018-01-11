@@ -17,6 +17,18 @@ h3, p {
   padding: 4px;
 }
 
+.type {
+  display: inline;
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  margin: 5px 0 5px 0;
+  padding: 4px;
+}
+
+input {
+  margin-bottom: 5px !important;
+}
+
 </style>
 
 @section('content')
@@ -33,7 +45,7 @@ h3, p {
               @foreach ($customers as $customer )
                   <div class="customer">
                       <h3>{{ $customer->name }}</h3>
-                      <p>({{ $customer->request }})</p>
+                      <p>({{ $customer->type }})</p>
                       @if ($customer->status == "in progress")
                         <p>In Progress</p>
                       @endif
@@ -49,9 +61,20 @@ h3, p {
 
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
-              <div class="col-md-6">
+              <div class="col-md-12">
                 <input id="name" type="text" class="form-control" name="name" placeholder="Enter Name" required autofocus>
-
+                <div class="type">
+                  <label for="haircut">Haircut</label>
+                  <input id="haircut" type="radio" value="haircut" name="type" checked="checked">
+                </div>
+                <div class="type">
+                  <label for="haircut">Shave</label>
+                  <input id="shave" type="radio" value="shave" name="type">
+                </div>
+                <div class="type">
+                  <label for="haircut">Both</label>
+                  <input id="both" type="radio" value="both" name="type">
+                </div>
                 @if ($errors->has('name'))
                 <span class="help-block">
                   <strong>{{ $errors->first('name') }}</strong>

@@ -16,7 +16,7 @@ class CreateCustomersTable extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('request')->default('haircut');
+            $table->string('type')->default('haircut');
             $table->string('status')->default('waiting');
             $table->integer('user_id')->unsigned()->index();
             $table->timestamps();

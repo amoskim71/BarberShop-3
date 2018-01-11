@@ -25,3 +25,6 @@ Route::post('/', 'CustomersController@create');
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/home/edit', 'HomeController@edit')->name('edit');
 Route::post('/home/edit', 'HomeController@update');
+
+//for debugging
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
