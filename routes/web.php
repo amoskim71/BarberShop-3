@@ -1,5 +1,7 @@
 <?php
 
+use App\Customer;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -12,7 +14,8 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    $customers = Customer::all();
+    return view('welcome', compact('customers'));
 });
 
 Auth::routes();

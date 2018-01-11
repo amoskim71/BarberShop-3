@@ -5,6 +5,18 @@
 input, button {
   display: inline !important;
 }
+
+h3, p {
+  display: inline !important;
+}
+
+.customer {
+  border: 1px solid lightgrey;
+  border-radius: 4px;
+  margin: 4px 0 4px 0;
+  padding: 4px;
+}
+
 </style>
 
 @section('content')
@@ -17,6 +29,21 @@ input, button {
         <div class="panel-heading">Barbershop Queue</div>
 
         <div class="panel-body">
+
+          @if (isset($customers) && $customers->count() > 0)
+              @foreach ($customers as $customer )
+                  <div class="customer">
+                      <h3>{{ $customer->name }}</h3>
+                      <p>({{ $customer->request }})</p>
+                      @if ($customer->status == "in progress")
+                        <p>In Progress</p>
+                      @endif
+                  </div>
+              @endforeach
+          @else
+              <p>There are currently no customers in line</p>
+          @endif
+
           <form class="form-horizontal" method="POST" action="/">
             {{ csrf_field() }}
 
