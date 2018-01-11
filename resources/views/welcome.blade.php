@@ -71,8 +71,8 @@
                     @auth
                         <a href="{{ url('/home') }}">Home</a>
                     @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
+                        <a href="{{ route('login') }}">Login as Barber</a>
+                        <a href="{{ route('register') }}">Register as Barber</a>
                     @endauth
                 </div>
                 @include ( 'layouts.barber' )

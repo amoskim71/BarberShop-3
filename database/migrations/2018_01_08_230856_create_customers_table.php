@@ -17,6 +17,7 @@ class CreateCustomersTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('request')->default('haircut');
+            $table->string('status')->default('waiting');
             $table->integer('user_id')->unsigned()->index();
             $table->timestamps();
         });

@@ -35,6 +35,7 @@ class HomeController extends Controller
 
     public function update(Request $request)
     {
+      // Users can keep their previous email address but cannot choose any other available address
       $validatedDate = $request->validate([
         'name' => 'required|string|max:255',
         'email' => 'required|string|email|max:255|unique:users,email,'.Auth::user()->id,

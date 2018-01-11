@@ -43,7 +43,7 @@
                             <label for="bio" class="col-md-4 control-label">Bio</label>
 
                             <div class="col-md-6">
-                                <input id="bio" type="text" class="form-control" name="bio" value="{{ old('bio') }}" required>
+                                <input id="bio" type="text" class="form-control" name="bio" placeholder="Tell customers a little bit about yourself :)" value="{{ old('bio') }}" required>
 
                                 @if ($errors->has('bio'))
                                     <span class="help-block">
