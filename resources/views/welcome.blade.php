@@ -20,7 +20,6 @@ h3, p {
 </style>
 
 @section('content')
-@guest
 
 <div class="container">
   <div class="row">
@@ -44,6 +43,7 @@ h3, p {
               <p>There are currently no customers in line</p>
           @endif
 
+          @guest
           <form class="form-horizontal" method="POST" action="/">
             {{ csrf_field() }}
 
@@ -68,11 +68,11 @@ h3, p {
               </div>
             </div>
           </form>
+          @endguest
         </div>
       </div>
     </div>
   </div>
 </div>
-@endguest
 
 @endsection
