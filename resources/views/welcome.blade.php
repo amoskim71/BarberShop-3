@@ -1,84 +1,51 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>Laravel</title>
+<style>
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+input, button {
+  display: inline !important;
+}
+</style>
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+@section('content')
+@guest
 
-            .full-height {
-                height: 100vh;
-            }
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 col-md-offset-2">
+      <div class="panel panel-default">
+        <div class="panel-heading">Barbershop Queue</div>
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+        <div class="panel-body">
+          <form class="form-horizontal" method="POST" action="/">
+            {{ csrf_field() }}
 
-            .position-ref {
-                position: relative;
-            }
+            <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
+              <div class="col-md-6">
+                <input id="name" type="text" class="form-control" name="name" placeholder="Enter Name" required autofocus>
 
-            .content {
-                text-align: center;
-            }
+                @if ($errors->has('name'))
+                <span class="help-block">
+                  <strong>{{ $errors->first('name') }}</strong>
+                </span>
+                @endif
+              </div>
+            </div>
 
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login as Barber</a>
-                        <a href="{{ route('register') }}">Register as Barber</a>
-                    @endauth
-                </div>
-                @include ( 'layouts.barber' )
-            @else
-                @include ( 'layouts.customer' )
-            @endif
+            <div class="form-group">
+              <div class="col-md-6 col-md-offset-4">
+                <button type="submit" class="btn btn-primary">
+                  Get in Line
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
-    </body>
-</html>
+      </div>
+    </div>
+  </div>
+</div>
+@endguest
+
+@endsection
