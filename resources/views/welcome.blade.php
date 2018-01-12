@@ -29,7 +29,7 @@ input {
   margin-bottom: 5px !important;
 }
 
-.customer.in-progress{
+.customer#no-1 {
   background-color: #f1f8e9;
   border-color: rgb(51,176,124);
   color: rgb(51,176,124);
@@ -53,10 +53,10 @@ form {
 
           @if (isset($customers) && $customers->count() > 0)
               @foreach ($customers as $customer )
-                  <div class="customer {{ $customer->status }}">
+                  <div class="customer" id="no-{{ $loop->iteration }}">
                       {{$loop->iteration}}
                       <h3>{{ $customer->name }}</h3>
-                      @if ($customer->status == "in-progress")
+                      @if ($loop->iteration == 1)
                           <p>is currently getting: {{ $customer->type }}</p>
                           @auth
                             <form method="POST" action="/">

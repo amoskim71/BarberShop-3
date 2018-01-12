@@ -11,12 +11,6 @@ class CustomersController extends Controller
     public function index()
     {
       $customers = Customer::all();
-      if (!$customers->isEmpty())
-      {
-        $first_customer = $customers->first();
-        $first_customer->status = 'in-progress';
-        $first_customer->save();
-      }
       return view('welcome', compact('customers'));
     }
 
