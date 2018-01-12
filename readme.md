@@ -6,7 +6,7 @@ Customers are anonymous and do not login; they simply add themselves to the end 
 
 A stretch feature I would've liked to add would be allowing for multiple barbers to work at the same time, so each would have their own queue of customers. Maybe later!
 
-Made with Laravel.
+Made with Laravel. For production, routes are forced to use HTTPS.
 
 <img src='https://github.com/iwpeifer/BarberShop/blob/master/public/images/SS1.png?raw=true'/>
 <img src='https://github.com/iwpeifer/BarberShop/blob/master/public/images/SS2.png?raw=true'/>
