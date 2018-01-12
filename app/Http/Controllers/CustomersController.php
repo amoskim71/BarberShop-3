@@ -32,7 +32,6 @@ class CustomersController extends Controller
         }
         return;
       }
-      //hi
 
       $customers = Customer::all();
       $clock = calculateTime($customers);
