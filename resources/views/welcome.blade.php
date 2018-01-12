@@ -54,6 +54,7 @@ form {
           @if (isset($customers) && $customers->count() > 0)
               @foreach ($customers as $customer )
                   <div class="customer {{ $customer->status }}">
+                      {{$loop->iteration}}
                       <h3>{{ $customer->name }}</h3>
                       @if ($customer->status == "in-progress")
                           <p>is currently getting: {{ $customer->type }}</p>
