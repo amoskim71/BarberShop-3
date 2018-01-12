@@ -55,7 +55,7 @@ form {
       <div class="panel panel-default">
         <div class="panel-heading">
           @auth
-            {{Auth::user()->name}}
+            <a href="/home">{{Auth::user()->name}}</a>
           @else
             Welcome Customer!
           @endauth
