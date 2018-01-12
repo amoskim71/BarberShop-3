@@ -93,7 +93,7 @@ form {
             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
               <div class="col-md-12">
-                <input id="name" type="text" class="form-control" name="name" placeholder="Enter Name" required autofocus>
+                <input id="name" type="text" class="form-control" name="name" placeholder="Enter name and click below to join queue" required autofocus>
                 <div class="type">
                   <label for="haircut">Haircut</label>
                   <input id="haircut" type="radio" value="haircut" name="type" checked="checked">
