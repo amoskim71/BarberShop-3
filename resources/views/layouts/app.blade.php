@@ -52,17 +52,17 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('customers') }}">
-                                            Customers
-                                        </a>
-                                    </li>
+                                  <li>
+                                    <a href="{{ route('home') }}">
+                                      Profile
+                                    </a>
+                                  </li>
 
-                                    <li>
-                                        <a href="{{ route('home') }}">
-                                            Profile
-                                        </a>
-                                    </li>
+                                  <li>
+                                      <a href="{{ route('customers') }}">
+                                          Customers
+                                      </a>
+                                  </li>
 
                                     <li>
                                         <a href="{{ route('logout') }}"
