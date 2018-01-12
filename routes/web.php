@@ -1,5 +1,9 @@
 <?php
 
+if (env('APP_ENV') === 'production') {
+    URL::forceSchema('https');
+}
+
 use App\Customer;
 
 /*
@@ -15,12 +19,12 @@ use App\Customer;
 
 Auth::routes();
 
-Route::get('/', 'CustomersController@index', 'https' => true])->name('customers');
-Route::post('/', 'CustomersController@create', 'https' => true]);
+Route::get('/', 'CustomersController@index')->name('customers');
+Route::post('/', 'CustomersController@create');
 
-Route::get('/home', 'HomeController@index', 'https' => true])->name('home');
-Route::get('/home/edit', 'HomeController@edit', 'https' => true])->name('edit');
-Route::post('/home/edit', 'HomeController@update', 'https' => true]);
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/home/edit', 'HomeController@edit')->name('edit');
+Route::post('/home/edit', 'HomeController@update');
 
 //for debugging
-Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index', 'https' => true]);
+Route::get('logs', '\Rap2hpoutre\LaravelLogViewer\LogViewerController@index');
