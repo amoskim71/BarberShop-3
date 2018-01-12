@@ -10,8 +10,29 @@ class CustomersController extends Controller
 {
     public function index()
     {
+      function calculateTime($customers)
+      {
+        $clock = 0;
+        foreach ($customers as $customer)
+        {
+          switch ($customer->type)
+          {
+            case "shave":
+            $clock += 10;
+            break;
+            case "both":
+            $clock += 30;
+            break;
+            default:
+            $clock += 20;
+          }
+        }
+        return $clock;
+      }
+
       $customers = Customer::all();
-      return view('welcome', compact('customers'));
+      $clock = calculateTime($customers);
+      return view('welcome', compact('customers'), compact('clock'));
     }
 
     public function create(Request $request)
@@ -35,5 +56,6 @@ class CustomersController extends Controller
 
       return redirect('/');
     }
+
 
 }
