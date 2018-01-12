@@ -52,7 +52,7 @@ return [
     |
     */
 
-    'url' => env('APP_URL', 'https://barbershop11.herokuapp.com'),
+    'url' => env('APP_URL', 'barbershop11.herokuapp.com'),
 
     /*
     |--------------------------------------------------------------------------
