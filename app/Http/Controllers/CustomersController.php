@@ -12,22 +12,25 @@ class CustomersController extends Controller
     {
       function calculateTime($customers)
       {
-        $clock = 0;
+        $total = 0;
         foreach ($customers as $customer)
         {
           switch ($customer->type)
           {
             case "shave":
-            $clock += 10;
+            $customer->time = $total;
+            $total += 10;
             break;
             case "both":
-            $clock += 30;
+            $customer->time = $total;
+            $total += 30;
             break;
             default:
-            $clock += 20;
+            $customer->time = $total;
+            $total += 20;
           }
         }
-        return $clock;
+        return;
       }
 
       $customers = Customer::all();

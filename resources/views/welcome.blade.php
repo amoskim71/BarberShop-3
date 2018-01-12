@@ -39,16 +39,9 @@ form {
   display: inline;
 }
 
-.clock, .panel-heading {
-  display: inline-block;
-}
-
 .panel-heading {
-  background-color: #f1f8e9 !important;
-}
-
-.clock {
-  color: rgb(51,176,124);
+  background-color: white !important;
+  text-align: center;
   font-size: 1.5em;
 }
 
@@ -60,9 +53,12 @@ form {
   <div class="row">
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
-        <div class="panel-heading">Estimated Time Remaining:</div>
-        <div class="clock">
-          {{$clock}} minutes
+        <div class="panel-heading">
+          @auth
+            {{Auth::user()->name}}
+          @else
+            Welcome Customer!
+          @endauth
         </div>
 
         <div class="panel-body">
@@ -82,6 +78,7 @@ form {
                           @endauth
                       @else
                           <p>is waiting for: {{ $customer->type }}</p>
+                          <p>(approx. {{ $customer-> time}} minutes)</p>
                       @endif
                   </div>
               @endforeach
