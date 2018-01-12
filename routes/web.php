@@ -15,7 +15,7 @@ use App\Customer;
 
 Auth::routes();
 
-Route::get('/', 'customersController@index')->name('customers');
+Route::get('/', 'CustomersController@index')->name('customers');
 Route::post('/', 'CustomersController@create');
 
 Route::get('/home', 'HomeController@index')->name('home');
