@@ -13,10 +13,7 @@ use App\Customer;
 |
 */
 
-Route::get('/', function () {
-    $customers = Customer::all();
-    return view('welcome', compact('customers'));
-});
+Route::get('/', 'customersController@index');
 
 Auth::routes();
 

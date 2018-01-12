@@ -29,6 +29,16 @@ input {
   margin-bottom: 5px !important;
 }
 
+.customer.in-progress{
+  background-color: #f1f8e9;
+  border-color: rgb(51,176,124);
+  color: rgb(51,176,124);
+}
+
+form {
+  display: inline;
+}
+
 </style>
 
 @section('content')
@@ -43,11 +53,18 @@ input {
 
           @if (isset($customers) && $customers->count() > 0)
               @foreach ($customers as $customer )
-                  <div class="customer">
+                  <div class="customer {{ $customer->status }}">
                       <h3>{{ $customer->name }}</h3>
-                      <p>({{ $customer->type }})</p>
-                      @if ($customer->status == "in progress")
-                        <p>In Progress</p>
+                      @if ($customer->status == "in-progress")
+                          <p>is currently getting: {{ $customer->type }}</p>
+                          @auth
+                            <form method="POST" action="/">
+                              <button type="submit" name="complete" class="btn btn-success">Complete</button>
+                              {{ csrf_field() }}
+                            </form>
+                          @endauth
+                      @else
+                          <p>is waiting for: {{ $customer->type }}</p>
                       @endif
                   </div>
               @endforeach
