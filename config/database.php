@@ -1,21 +1,11 @@
 <?php
 
-$host = "";
-$username = "";
-$password = "";
-$database = "";
-
-//could not get app()->environment() or App::environment working, so this is my workaround
-if (parse_url(getenv("CLEARDB_DATABASE_URL"))["path"] != "")
-{
-  dd(parse_url(getenv("CLEARDB_DATABASE_URL")));
   $url = parse_url(getenv("CLEARDB_DATABASE_URL"));
 
   $host = $url["host"];
   $username = $url["user"];
   $password = $url["pass"];
   $database = substr($url["path"], 1);
-}
 
 return [
 

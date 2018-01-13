@@ -15,11 +15,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
       Schema::defaultStringLength(191);
-      //could not get app()->environment() or App::environment working, so this is my workaround
-      if (parse_url(getenv("CLEARDB_DATABASE_URL"))["path"] != "")
-      {
-        \URL::forceScheme('https');
-      }
+      \URL::forceScheme('https');
     }
 
     /**
